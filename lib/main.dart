@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/HomePage.dart';
+import 'package:flutter_application_1/widgets/PlayList.dart';
 
 void main() =>  runApp( MyApp());
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         "/":(context) => HomePage(),
+       // "playlistPage" : (context) => PlayListPage(),
       },
     );
   }

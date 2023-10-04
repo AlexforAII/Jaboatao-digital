@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/widgets/MusicList.dart';
+
+import '../widgets/PlayList.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -51,7 +54,7 @@ class HomePage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(bottom: 5),
                     child: Text(
-                      "Ale e Eric",
+                      "Music Academy",
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.9),
                         fontSize: 28,
@@ -144,8 +147,13 @@ class HomePage extends StatelessWidget {
                     flex: 1,
                     child: TabBarView(
                       children: [
-                        // Musiclist(),
-                        Container(
+                        MusicList(),
+                        MusicList(),
+                        PlayList(),
+                        MusicList(),
+                        MusicList(),
+                        MusicList(),
+                        /* Container(
                           color: Colors.red,
                         ),
                         Container(
@@ -162,7 +170,7 @@ class HomePage extends StatelessWidget {
                         ),
                         Container(
                           color: Colors.red,
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
