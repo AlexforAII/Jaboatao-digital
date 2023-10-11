@@ -97,6 +97,10 @@ class HomePage extends StatelessWidget {
                                 ),
                                 border: InputBorder.none,
                               ),
+                              style: TextStyle(
+                                // Defina o estilo do texto para branco
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           Padding(

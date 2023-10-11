@@ -137,43 +137,43 @@ class MusicPage extends StatelessWidget {
                       ),
                       SizedBox(height: 30),
                       Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Icon(
-                              Icons.list,
-                              color: Colors.white,
-                              size: 32,
-                            ),
-                            Icon(
-                              CupertinoIcons.backward_end_fill,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                            Container(
-                              height: 55,
-                              width: 55,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Icon(
-                                Icons.play_arrow,
-                                color: Color(0xFF31314F),
-                                size: 45,
-                              ),
-                            ),
-                            Icon(
-                              CupertinoIcons.forward_end_fill,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                            Icon(
-                              Icons.download,
-                              color: Colors.white,
-                              size: 32,
-                            ),
-                          ],
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Icon(
+                            Icons.list,
+                            color: Colors.white,
+                            size: 32,
                           ),
+                          Icon(
+                            CupertinoIcons.backward_end_fill,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                          Container(
+                            height: 55,
+                            width: 55,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Icon(
+                              Icons.play_arrow,
+                              color: Color(0xFF31314F),
+                              size: 45,
+                            ),
+                          ),
+                          Icon(
+                            CupertinoIcons.forward_end_fill,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                          Icon(
+                            Icons.download,
+                            color: Colors.white,
+                            size: 32,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

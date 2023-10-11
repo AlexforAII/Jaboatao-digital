@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => HomePage(),
         "playlistPage": (context) => PlayListPage(),
-        "musictPage": (context) => MusicPage(),
+        "musicPage": (context) => MusicPage(),
       },
     );
   }
