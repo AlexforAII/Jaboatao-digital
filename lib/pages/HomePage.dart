@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/MusicList.dart';
-
-import '../widgets/PlayList.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -153,7 +152,7 @@ class HomePage extends StatelessWidget {
                       children: [
                         MusicList(),
                         MusicList(),
-                        PlayList(),
+                        MusicList(),
                         MusicList(),
                         MusicList(),
                         MusicList(),

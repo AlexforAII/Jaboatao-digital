@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -156,10 +157,18 @@ class MusicPage extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            child: Icon(
-                              Icons.play_arrow,
-                              color: Color(0xFF31314F),
-                              size: 45,
+                            child: GestureDetector(
+                              onTap: () {
+                                final 
+
+                                player.play(AssetSource(
+                                    "/musicas/SnapInsta.io - Life in Rio (320 kbps).mp3"));
+                              },
+                              child: Icon(
+                                Icons.play_arrow,
+                                color: Color(0xFF31314F),
+                                size: 45,
+                              ),
                             ),
                           ),
                           Icon(

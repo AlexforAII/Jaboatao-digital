@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class MusicList extends StatelessWidget {
   @override
@@ -7,7 +8,7 @@ class MusicList extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 15),
-          for (int i = 1; i < 20; i++)
+          for (int i = 1; i <= 6; i++)
             Container(
               margin: EdgeInsets.only(top: 15, right: 12, left: 5),
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
