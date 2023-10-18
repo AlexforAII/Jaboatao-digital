@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/HomePage.dart';
 import 'package:flutter_application_1/pages/MusicPage.dart';
 import 'package:flutter_application_1/pages/PlayListPage.dart';
-import 'package:audioplayers/audioplayers.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +13,6 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => HomePage(),
         "playlistPage": (context) => PlayListPage(),
-        "musicPage": (context) => MusicPage(),
       },
     );
   }

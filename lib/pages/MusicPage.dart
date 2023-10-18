@@ -2,11 +2,63 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MusicPage extends StatelessWidget {
+class MusicPage extends StatefulWidget {
+  final String pathMusic;
+  final String musicName;
+  final String singerName;
+
+  const MusicPage(
+      {super.key,
+      required this.pathMusic,
+      required this.musicName,
+      required this.singerName});
+
+  @override
+  State<MusicPage> createState() => _MusicPageState();
+}
+
+class _MusicPageState extends State<MusicPage> {
+  bool hasPlaying = false;
+
+  AudioPlayer player = AudioPlayer();
+  Duration maxDuration = const Duration(seconds: 10);
+  Duration currentDuration = const Duration(seconds: 0);
+
+  void TogglePlay() {
+    if (player.state == PlayerState.playing) {
+      player.pause().then((value) {
+        hasPlaying = false;
+      });
+    } else {
+      player.resume().then((value) {
+        hasPlaying = true;
+      });
+    }
+    setState(() {});
+  }
+
+  double getCurrentDurationSlider() {
+    return (currentDuration.inSeconds / maxDuration.inSeconds) * 100;
+  }
+
+  format(Duration d) => d.toString().substring(2, 7);
+
+  @override
+  void initState() {
+    player.onDurationChanged.listen((Duration d) {
+      setState(() => maxDuration = d);
+    });
+    player.onPositionChanged.listen((Duration p) {
+      setState(() => currentDuration = p);
+    });
+    player.setSource(AssetSource(widget.pathMusic));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage(
               "images/background.png",
@@ -23,8 +75,8 @@ class MusicPage extends StatelessWidget {
               colors: [
                 Colors.black.withOpacity(0.3),
                 Colors.black.withOpacity(0.5),
-                Color(0xFF31314F).withOpacity(1),
-                Color(0xFF31314F).withOpacity(1),
+                const Color(0xFF31314F).withOpacity(1),
+                const Color(0xFF31314F).withOpacity(1),
               ],
             ),
           ),
@@ -34,15 +86,16 @@ class MusicPage extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 45, horizontal: 25),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 45, horizontal: 25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
                         onTap: () {
-                          Navigator.pop(context);
+                          Navigator.pushNamed(context, "/");
                         },
-                        child: Icon(
+                        child: const Icon(
                           CupertinoIcons.back,
                           color: Colors.white,
                           size: 30,
@@ -50,7 +103,7 @@ class MusicPage extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {},
-                        child: Icon(
+                        child: const Icon(
                           Icons.more_vert,
                           color: Colors.white,
                           size: 30,
@@ -59,32 +112,36 @@ class MusicPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Container(
                   height: MediaQuery.of(context).size.height / 2.5,
                   child: Column(
                     children: [
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 23, horizontal: 20),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 23, horizontal: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "Imagine Dragons",
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(0.9),
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width - 85,
+                                  child: Text(
+                                    widget.musicName,
+                                    style: TextStyle(
+                                      color: Colors.white.withOpacity(0.9),
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Text(
-                                  "Nome do cantor",
+                                  widget.singerName,
                                   style: TextStyle(
                                     color: Colors.white.withOpacity(0.8),
                                     fontSize: 18,
@@ -92,7 +149,7 @@ class MusicPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Icon(
+                            const Icon(
                               Icons.favorite,
                               color: Colors.redAccent,
                               size: 35,
@@ -105,18 +162,20 @@ class MusicPage extends StatelessWidget {
                           Slider(
                             min: 0,
                             max: 100,
-                            value: 40,
-                            onChanged: (value) {},
+                            value: getCurrentDurationSlider(),
+                            onChanged: (value) {
+                              setState(() {});
+                            },
                             activeColor: Colors.white,
                             inactiveColor: Colors.white54,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "02:10",
+                                  format(currentDuration),
                                   style: TextStyle(
                                     color: Colors.white.withOpacity(0.6),
                                     fontWeight: FontWeight.w500,
@@ -124,7 +183,7 @@ class MusicPage extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "04:30",
+                                  format(maxDuration),
                                   style: TextStyle(
                                     color: Colors.white.withOpacity(0.6),
                                     fontWeight: FontWeight.w500,
@@ -136,16 +195,16 @@ class MusicPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.list,
                             color: Colors.white,
                             size: 32,
                           ),
-                          Icon(
+                          const Icon(
                             CupertinoIcons.backward_end_fill,
                             color: Colors.white,
                             size: 30,
@@ -159,24 +218,21 @@ class MusicPage extends StatelessWidget {
                             ),
                             child: GestureDetector(
                               onTap: () {
-                                final 
-
-                                player.play(AssetSource(
-                                    "/musicas/SnapInsta.io - Life in Rio (320 kbps).mp3"));
+                                TogglePlay();
                               },
                               child: Icon(
-                                Icons.play_arrow,
-                                color: Color(0xFF31314F),
+                                !hasPlaying ? Icons.play_arrow : Icons.stop,
+                                color: const Color(0xFF31314F),
                                 size: 45,
                               ),
                             ),
                           ),
-                          Icon(
+                          const Icon(
                             CupertinoIcons.forward_end_fill,
                             color: Colors.white,
                             size: 30,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.download,
                             color: Colors.white,
                             size: 32,
