@@ -1,6 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/HomePage.dart';
+import 'package:flutter_application_1/widgets/MusicList.dart';
 
 class MusicPage extends StatefulWidget {
   final String pathMusic;
@@ -56,6 +58,12 @@ class _MusicPageState extends State<MusicPage> {
   }
 
   @override
+  void dispose() {
+    player.stop();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
@@ -93,7 +101,13 @@ class _MusicPageState extends State<MusicPage> {
                     children: [
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, "/");
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const HomePage(),
+                            ),
+                          );
                         },
                         child: const Icon(
                           CupertinoIcons.back,
@@ -164,6 +178,14 @@ class _MusicPageState extends State<MusicPage> {
                             max: 100,
                             value: getCurrentDurationSlider(),
                             onChanged: (value) {
+                              // player.seek(
+                              //   Duration(
+                              //     seconds: double.parse(
+                              //             (maxDuration * (value / 100))
+                              //                 .toString())
+                              //         .toInt(),
+                              //   ),
+                              // );
                               setState(() {});
                             },
                             activeColor: Colors.white,
@@ -204,10 +226,28 @@ class _MusicPageState extends State<MusicPage> {
                             color: Colors.white,
                             size: 32,
                           ),
-                          const Icon(
-                            CupertinoIcons.backward_end_fill,
-                            color: Colors.white,
-                            size: 30,
+                          GestureDetector(
+                            onTap: () {
+                              int index = listMusic.indexWhere((element) =>
+                                  element.path == widget.pathMusic);
+
+                              if (index == 0) return;
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) => MusicPage(
+                                    musicName: listMusic[index - 1].musicName,
+                                    pathMusic: listMusic[index - 1].path,
+                                    singerName: listMusic[index - 1].singer,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: const Icon(
+                              CupertinoIcons.backward_end_fill,
+                              color: Colors.white,
+                              size: 30,
+                            ),
                           ),
                           Container(
                             height: 55,
@@ -227,10 +267,27 @@ class _MusicPageState extends State<MusicPage> {
                               ),
                             ),
                           ),
-                          const Icon(
-                            CupertinoIcons.forward_end_fill,
-                            color: Colors.white,
-                            size: 30,
+                          GestureDetector(
+                            onTap: () {
+                              int index = listMusic.indexWhere((element) =>
+                                  element.path == widget.pathMusic);
+                              if (index == listMusic.length - 1) return;
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) => MusicPage(
+                                    musicName: listMusic[index + 1].musicName,
+                                    pathMusic: listMusic[index + 1].path,
+                                    singerName: listMusic[index + 1].singer,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: const Icon(
+                              CupertinoIcons.forward_end_fill,
+                              color: Colors.white,
+                              size: 30,
+                            ),
                           ),
                           const Icon(
                             Icons.download,

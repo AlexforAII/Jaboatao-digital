@@ -1,6 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/MusicPage.dart';
 
+List<MusicInfo> listMusic = [
+  MusicInfo(
+      path: "musicas/Life in Rio.mp3",
+      musicName: "Life in Rio",
+      singer: "Ytb/Phonk"),
+  MusicInfo(
+      path: "musicas/MONTAGEM CANIBAL PHONK.mp3",
+      musicName: "MONTAGEM CANIBAL PHONK",
+      singer: "Ytb/Phonk"),
+  MusicInfo(
+      path: "musicas/MTG - PISTA TOMA.mp3",
+      musicName: "PISTA TOMA",
+      singer: "Ytb/Phonk"),
+  MusicInfo(
+      path: "musicas/ORQUESTRA MALDITA.mp3",
+      musicName: "ORQUESTRA MALDITA",
+      singer: "Ytb/Phonk"),
+  MusicInfo(
+      path: "musicas/REI DO BRASIL.mp3",
+      musicName: "REI DO BRASIL",
+      singer: "Ytb/Phonk"),
+  MusicInfo(
+      path: "musicas/TREINAMENTO DE FORÇA.mp3",
+      musicName: "TREINAMENTO DE FORÇA",
+      singer: "Ytb/Phonk"),
+  MusicInfo(
+      path: "musicas/TUCA DONKA.mp3",
+      musicName: "TUCA DONKA",
+      singer: "Ytb/Phonk"),
+];
+
 class MusicInfo {
   late String path;
   late String singer;
@@ -11,37 +42,6 @@ class MusicInfo {
 }
 
 class MusicList extends StatelessWidget {
-  List<MusicInfo> listMusic = [
-    MusicInfo(
-        path: "musicas/Life in Rio.mp3",
-        musicName: "Life in Rio",
-        singer: "Ytb/Phonk"),
-    MusicInfo(
-        path: "musicas/MONTAGEM CANIBAL PHONK.mp3",
-        musicName: "MONTAGEM CANIBAL PHONK",
-        singer: "Ytb/Phonk"),
-    MusicInfo(
-        path: "musicas/MTG - PISTA TOMA.mp3",
-        musicName: "PISTA TOMA",
-        singer: "Ytb/Phonk"),
-    MusicInfo(
-        path: "musicas/ORQUESTRA MALDITA.mp3",
-        musicName: "ORQUESTRA MALDITA",
-        singer: "Ytb/Phonk"),
-    MusicInfo(
-        path: "musicas/REI DO BRASIL.mp3",
-        musicName: "REI DO BRASIL",
-        singer: "Ytb/Phonk"),
-    MusicInfo(
-        path: "musicas/TREINAMENTO DE FORÇA.mp3",
-        musicName: "TREINAMENTO DE FORÇA",
-        singer: "Ytb/Phonk"),
-    MusicInfo(
-        path: "musicas/TUCA DONKA.mp3",
-        musicName: "TUCA DONKA",
-        singer: "Ytb/Phonk"),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
